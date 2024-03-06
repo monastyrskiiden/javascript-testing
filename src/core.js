@@ -28,13 +28,17 @@ export function calculateDiscount(price, discountCode) {
 
 // Exercise: Positive and negative testing
 export function validateUserInput(username, age) {
-  let errors = [];
+  const errors = [];
 
-  if (typeof username !== 'string' || username.length < 3) {
+  if (
+    typeof username !== 'string' ||
+    username.length < 3 ||
+    username.length > 255
+  ) {
     errors.push('Invalid username');
   }
 
-  if (typeof age !== 'number' || age < 18) {
+  if (typeof age !== 'number' || age < 18 || age > 100) {
     errors.push('Invalid age');
   }
 
@@ -50,6 +54,8 @@ export function isPriceInRange(price, min, max) {
 export function isValidUsername(username) {
   const minLength = 5;
   const maxLength = 15;
+
+  if (!username) return false;
 
   return username.length >= minLength && username.length <= maxLength;
 }
